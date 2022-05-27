@@ -1,0 +1,14 @@
+.google {
+    float:left;
+    width:15%;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+.github {
+    float: right;
+    width: 20%;
+    margin-right: 50px;
+}
+.registration {
+    margin-top: 120px;
+}
