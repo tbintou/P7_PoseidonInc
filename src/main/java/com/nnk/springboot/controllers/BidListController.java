@@ -88,6 +88,5 @@ public class BidListController {
         } else {
             throw new IllegalArgumentException("Invalid bibList id : " + id);
         }
-
     }
 }

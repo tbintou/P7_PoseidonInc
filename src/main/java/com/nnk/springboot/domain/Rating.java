@@ -20,13 +20,18 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id ;
 
+    @Column(name = "moodys_rating")
     private String moodysRating ;
 
-    private String sandPRating ;
+    @Column(name = "sand_prating")
+    private String sandPrating ;
 
+    @Column(name = "fitch_rating")
     private String fitchRating ;
 
+    @Column(name = "order_number")
     private Integer orderNumber ;
+
 
     public Rating(String moodys_rating, String sand_pRating, String fitch_rating, int orderNumber) {
     }

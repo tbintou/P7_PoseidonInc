@@ -19,45 +19,15 @@ public class Trade {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tradeId ;
 
+    @Column(name = "account")
     private String account ;
 
+    @Column(name = "type")
     private String type ;
 
+    @Column(name = "buy_quantity")
     private Double buyQuantity ;
 
-    private Double sellQuantity ;
-
-    private Double buyPrice ;
-
-    private Double sellPrice ;
-
-    private String benchmark ;
-
-    private Timestamp tradeDate ;
-
-    private String security ;
-
-    private String status ;
-
-    private String trader ;
-
-    private String book ;
-
-    private String creationName ;
-
-    private Timestamp creationDate ;
-
-    private String revisionName ;
-
-    private Timestamp revisionDate ;
-
-    private String dealName ;
-
-    private String dealType ;
-
-    private String sourceListId ;
-
-    private String side ;
 
     public Trade(String trade_account, String type) {
 

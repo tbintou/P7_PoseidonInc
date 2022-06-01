@@ -2,10 +2,10 @@ package com.nnk.springboot.domain;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Timestamp;
 
 @Getter
@@ -21,15 +21,24 @@ public class CurvePoint {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id ;
 
-    private Integer curveId ;
+    @Digits(integer = 20, fraction = 0)
+    @NotNull(message = "CurveId is mandatory")
+    @Min(value = 0, message = "The value must be positive")
+    @Column(name = "curve_id")
+    private Integer curvePointId ;
 
-    private Timestamp asOfDate ;
-
+    @Digits(integer = 20, fraction = 2)
+    @Min(value = 0, message = "The value must be positive")
+    @NotNull(message = "Numbers has to be present")
+    @Column(name = "term")
     private Double term ;
 
+    @Digits(integer = 20, fraction = 2)
+    @Min(value = 0, message = "The value must be positive")
+    @NotNull(message = "Numbers has to be present")
+    @Column(name = "value")
     private Double value ;
 
-    private Timestamp creationDate ;
 
     public CurvePoint(int curveId, Double term, Double value) {
     }

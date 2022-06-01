@@ -3,8 +3,7 @@ package com.nnk.springboot.serviceImpl;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.repositories.service.BidListService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,8 @@ import java.util.Optional;
 
 
 @Service
+@Slf4j
 public class BidListServiceImpl implements BidListService {
-    Logger logger = LoggerFactory.getLogger(BidListServiceImpl.class);
 
     private final BidListRepository bidListRepository;
 
@@ -25,26 +24,24 @@ public class BidListServiceImpl implements BidListService {
     @Override
     public void addBidList(BidList bidList) {
         bidListRepository.save(bidList);
-        logger.info("New BidList " + bidList + " is created !");
+        log.info("New BidList " + bidList + " is created !");
     }
 
     @Override
     public Boolean updateBidList(int id, BidList bidList) {
 
-        boolean updated = false;
         Optional<BidList> listBidList = bidListRepository.findById(id);
         if (listBidList.isPresent()) {
-        BidList newBildList = listBidList.get();
-        newBildList.setAccount(bidList.getAccount());
-        newBildList.setType(bidList.getType());
-        newBildList.setBidQuantity(bidList.getBidQuantity());
-        bidListRepository.save(newBildList);
-        updated = true;
-        logger.info("BidList with id " + id + " is updated as " + newBildList);
-        } else {
-            logger.info("Failed to update BidList with id " + id + " as" + bidList);
+        BidList newBidList = listBidList.get();
+            newBidList.setAccount(bidList.getAccount());
+            newBidList.setType(bidList.getType());
+            newBidList.setBidQuantity(bidList.getBidQuantity());
+        bidListRepository.save(newBidList);
+        log.info("BidList with id " + id + " is updated as " + newBidList);
+        return true;
         }
-        return updated;
+         log.info("Failed to update BidList with id " + id + " as" + bidList);
+        return false;
     }
 
     @Override
@@ -56,10 +53,10 @@ public class BidListServiceImpl implements BidListService {
     public BidList findById(int id) {
         Optional<BidList> listBidList = bidListRepository.findById(id);
         if(listBidList.isPresent()) {
-            logger.info("the id of BidList is " + id);
+            log.info("the id of BidList is " + id);
             return listBidList.get();
         } else {
-            logger.info("Failed to find BidList with id " + id);
+            log.info("Failed to find BidList with id " + id);
         }
         return null;
     }
@@ -69,9 +66,9 @@ public class BidListServiceImpl implements BidListService {
         Optional<BidList> listBidList = bidListRepository.findById(id);
         if (listBidList.isPresent()) {
             bidListRepository.delete(listBidList.get());
-            logger.info("Bidlist with this id " + id + " has been deleted !");
+            log.info("Bidlist with this id " + id + " has been deleted !");
         } else {
-            logger.info("Failed to delete BidList with id " + id);
+            log.info("Failed to delete BidList with id " + id);
         }
     }
 }
