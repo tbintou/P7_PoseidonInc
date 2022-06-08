@@ -1,6 +1,6 @@
 package com.nnk.springboot.security.config;
 
-import com.nnk.springboot.serviceImpl.auth.UserDetailsAuthenticate;
+import com.nnk.springboot.service.implementation.auth.UserDetailsAuthenticate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,9 +43,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registration","/css/**","/js/**").permitAll()
+                .antMatchers("/registration","/css/**","/js/**", "/images/**").permitAll()
                 .antMatchers("/user/**").hasAnyAuthority("ADMIN")
-                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER")
+                .antMatchers("/bidList/**", "/curvePoint/**", "/rating/**", "/ruleName/**", "/trade/**").hasAnyAuthority("ADMIN", "USER", "ROLE_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

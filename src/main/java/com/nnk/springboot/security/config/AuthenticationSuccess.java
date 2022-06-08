@@ -22,7 +22,7 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
                 response.sendRedirect("/user/list");
                 break;
             } else if (authority.getAuthority().equals("USER")) {
-                response.sendRedirect("bidList/list");
+                response.sendRedirect("/bidList/list");
                 break;
             }
         }

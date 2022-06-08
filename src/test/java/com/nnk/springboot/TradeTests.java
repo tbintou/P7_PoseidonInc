@@ -26,12 +26,12 @@ public class TradeTests {
 		// Save
 		trade = tradeRepository.save(trade);
 		Assert.assertNotNull(trade.getTradeId());
-		Assert.assertTrue(trade.getAccount().equals("Trade Account"));
+		Assert.assertEquals(trade.getAccount(), "Trade Account");
 
 		// Update
 		trade.setAccount("Trade Account Update");
 		trade = tradeRepository.save(trade);
-		Assert.assertTrue(trade.getAccount().equals("Trade Account Update"));
+		Assert.assertEquals(trade.getAccount(), "Trade Account Update");
 
 		// Find
 		List<Trade> listResult = tradeRepository.findAll();

@@ -23,7 +23,7 @@ public class User {
     @Column(name = "fullname")
     private String fullname;
 
-    @Pattern(regexp ="^[A-Za-z]*$", message = "Input has to be text")
+    @Pattern(regexp ="^[A-Za-z0-9_]*$", message = "Input has to be text and numerical")
     @NotBlank(message = "Username is mandatory")
     @Column(name = "username", unique = true)
     private String username;

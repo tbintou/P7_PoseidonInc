@@ -1,10 +1,9 @@
 package com.nnk.springboot.controllers;
 
 import com.nnk.springboot.domain.User;
-import com.nnk.springboot.domain.dto.UserRegistrationDTO;
-import com.nnk.springboot.repositories.service.UserService;
-import com.nnk.springboot.serviceImpl.PasswordValidator;
-import com.nnk.springboot.serviceImpl.auth.UserDetailsAuthenticate;
+import com.nnk.springboot.service.UserService;
+import com.nnk.springboot.service.implementation.PasswordValidator;
+import com.nnk.springboot.service.implementation.auth.UserDetailsAuthenticate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

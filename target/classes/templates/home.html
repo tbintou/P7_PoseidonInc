@@ -3,14 +3,15 @@
     <head>
         <title> Poseidon Inc </title>
         <link rel="stylesheet" href="/css/styles.css"/>
+        <link rel="stylesheet" href="../../css/bootstrap.min.css" >
     </head>
     <body>
-        <h3> HOME PAGE </h3>
-        <p>
+        <h3 style="margin-top: 0.5em; margin-left: 0.5em;"> HOME PAGE </h3>
+        <p style="margin-top: 0.5em; margin-left: 0.75em;">
             <span th:text="${name}"></span> <br>
             <a href="/login"> Logout </a>
-            <a href="/user/list" sec:authorize="hasAuthority('ADMIN')"> User management </a>
-            <a href="/bidList/list"> BidList </a>
+            <a style=" margin-left: 1em;" href="/user/list" sec:authorize="hasAuthority('ADMIN')"> User management </a>
+            <a style=" margin-left: 1em;" href="/bidList/list"> BidList </a>
         </p>
     </body>
 </html>
