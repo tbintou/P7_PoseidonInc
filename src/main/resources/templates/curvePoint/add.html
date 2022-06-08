@@ -1,56 +1,55 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" 
+<html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8"/>
-<title>Home</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" >
-</head>
-<body>
-<div class="container">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Home</title>
+		<link rel="stylesheet" href="../../css/bootstrap.min.css" >
+	</head>
+	<body>
+		<div class="container">
 
-	<div class="row">
-		<h2>Add New Curve Point</h2>
-	</div>
-
-	<div class="row">
-		<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
-			<!--
-			TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
-			 -->
-
-			<div class="form-group">
-				<label for="curvePointId" class="col-sm-2 control-label">Curve Point Id</label>
-				<div class="col-sm-10">
-					<input type="number" min="0" th:field="*{curvePointId}" id="curvePointId" class="col-4" placeholder="Curve Id">
-					<p class="text-danger" th:if="${#fields.hasErrors('curvePointId')}" th:errors="*{curvePointId}"></p>
-				</div>
+			<div class="row">
+				<h2>Add New Curve Point</h2>
 			</div>
 
-			<div class="form-group">
-				<label for="term" class="col-sm-2 control-label">Term</label>
-				<div class="col-sm-10">
-					<input type="number" step="0.01" min="0" th:field="*{term}" id="term" class="col-4" placeholder="Term">
-				</div>
+			<div class="row">
+				<form action="#" th:action="@{/curvePoint/validate}" th:object="${curvePoint}" method="post" class="form-horizontal" style="width: 100%">
+					<!--
+					TODO: Create a form to input the values of CurvePoint, there are 2 buttons: Save data and Cancel to the list CurvePoint
+					 -->
+					<div class="form-group">
+						<label for="curvePointId" class="col-sm-2 control-label">Curve Point Id</label>
+						<div class="col-sm-10">
+							<input type="number" min="0" th:field="*{curvePointId}" id="curvePointId" class="col-4" placeholder="Curve Id">
+							<p class="text-danger" th:if="${#fields.hasErrors('curvePointId')}" th:errors="*{curvePointId}"></p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="term" class="col-sm-2 control-label">Term</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" min="0" th:field="*{term}" id="term" class="col-4" placeholder="Term">
+							<p class="text-danger" th:if="${#fields.hasErrors('term')}" th:errors="*{term}"></p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="value" class="col-sm-2 control-label">Value</label>
+						<div class="col-sm-10">
+							<input type="number" step="0.01" min="0" th:field="*{value}" id="value" class="col-4" placeholder="value">
+							<p class="text-danger" th:if="${#fields.hasErrors('value')}" th:errors="*{value}"></p>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-12">
+							<a class="btn btn-danger btn-sm" th:href="@{/curvePoint/list}">Cancel</a>
+							<input class="btn btn-primary btn-sm" type="submit" value="Add Curve Point">
+						</div>
+					</div>
+				</form>
 			</div>
-
-			<div class="form-group">
-				<label for="value" class="col-sm-2 control-label">Value</label>
-				<div class="col-sm-10">
-					<input type="number" step="0.01" min="0" th:field="*{value}" id="value" class="col-4" placeholder="value">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<div class="col-sm-12">
-					<a class="btn btn-danger btn-sm" th:href="@{/curvePoint/list}">Cancel</a>
-					<input class="btn btn-primary btn-sm" type="submit" value="Add CurvePoint">
-				</div>
-			</div>
-
-		</form>
-	</div>
-
-</div>
-</body>
+		</div>
+	</body>
 </html>
