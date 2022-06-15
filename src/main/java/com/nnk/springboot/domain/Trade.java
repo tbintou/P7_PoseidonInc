@@ -36,7 +36,6 @@ public class Trade {
     private Double buyQuantity ;
 
 
-    public Trade(String trade_account, String type) {
-
+    public Trade(String trade_account, String type, double v) {
     }
 }

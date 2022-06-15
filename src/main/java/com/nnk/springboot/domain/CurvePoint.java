@@ -40,6 +40,6 @@ public class CurvePoint {
     private Double value ;
 
 
-    public CurvePoint(int curveId, Double term, Double value) {
+    public CurvePoint(int curvePointId, double term, double value) {
     }
 }

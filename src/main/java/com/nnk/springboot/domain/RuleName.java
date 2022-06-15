@@ -51,6 +51,6 @@ public class RuleName {
     private String sqlPart ;
 
 
-    public RuleName(String rule_name, String description, String json, String template, String sqlStr, String sql_part) {
+    public RuleName(String rule_name, String description, String json, String template, String sql, String sql_part) {
     }
 }

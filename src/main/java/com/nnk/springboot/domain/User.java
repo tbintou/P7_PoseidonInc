@@ -36,4 +36,6 @@ public class User {
     @Column(name = "role")
     private String role = "USER";
 
+    public User(String username, String fullname, String password, String role) {
+    }
 }

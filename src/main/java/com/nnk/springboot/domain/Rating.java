@@ -41,6 +41,6 @@ public class Rating {
     private Integer orderNumber ;
 
 
-    public Rating(String moodys_rating, String sand_pRating, String fitch_rating, int orderNumber) {
+    public Rating(String moodys_rating, String sand_pRating, String fitch_rating, int i) {
     }
 }

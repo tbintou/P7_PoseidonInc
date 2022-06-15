@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.service.RedirectServiceTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 3.388 s <<< FAILURE! - in com.nnk.springboot.service.RedirectServiceTest
+formLoginRoleAdminAndPageRedirect  Time elapsed: 0.196 s  <<< FAILURE!
+java.lang.AssertionError: Authentication should not be null
+	at com.nnk.springboot.service.RedirectServiceTest.formLoginRoleAdminAndPageRedirect(RedirectServiceTest.java:57)
+
+formLoginAndPageRedirect  Time elapsed: 0.069 s  <<< FAILURE!
+java.lang.AssertionError: Authentication should not be null
+	at com.nnk.springboot.service.RedirectServiceTest.formLoginAndPageRedirect(RedirectServiceTest.java:46)
+
