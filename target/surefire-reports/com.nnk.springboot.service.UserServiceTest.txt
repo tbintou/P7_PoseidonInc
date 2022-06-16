@@ -1,0 +1,16 @@
+-------------------------------------------------------------------------------
+Test set: com.nnk.springboot.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 2, Skipped: 0, Time elapsed: 0.163 s <<< FAILURE! - in com.nnk.springboot.service.UserServiceTest
+findById  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.nnk.springboot.service.UserServiceTest.findById(UserServiceTest.java:55)
+
+updateUser  Time elapsed: 0.015 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.nnk.springboot.service.UserServiceTest.updateUser(UserServiceTest.java:42)
+
+findByUsername  Time elapsed: 0.011 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: not <null>
+	at com.nnk.springboot.service.UserServiceTest.findByUsername(UserServiceTest.java:35)
+

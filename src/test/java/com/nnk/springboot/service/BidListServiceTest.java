@@ -2,21 +2,21 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
-import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BidListServiceTest {
+
     private BidList bidList = new BidList();
 
     @Autowired
@@ -42,14 +42,14 @@ public class BidListServiceTest {
     public void updatedById() {
         Integer bidListId = bidList.getBidListId();
         BidList bidListById = bidListService.findById(bidListId);
-        bidListById.setAccount(" New account");
-        bidListById.setType("New type");
+        bidListById.setAccount("NewAccount");
+        bidListById.setType("NewType");
         bidListById.setBidQuantity(500.50);
         Boolean updatedBidListById = bidListService.updateBidList(bidListId, bidListById);
         assertTrue(updatedBidListById);
     }
 
-  /*  @Test
+    @Test
     public void findAll() {
         List<BidList> testBidListList = bidListService.findAll();
         assertTrue(testBidListList.size() > 0);
@@ -70,5 +70,5 @@ public class BidListServiceTest {
         bidListService.deleteById(bidListId);
         BidList bidListById = bidListService.findById(bidListId);
         assertNull(bidListById);
-    }*/
+    }
 }

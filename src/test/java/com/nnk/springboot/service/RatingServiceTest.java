@@ -2,17 +2,15 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.repositories.RatingRepository;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RatingServiceTest {
 
     private Rating rating = new Rating();
@@ -41,25 +39,25 @@ public class RatingServiceTest {
     public void updateById() {
         Integer ratingId = rating.getId();
         Rating ratingById = ratingService.findById(ratingId);
-        ratingById.setMoodysRating("New moodysRating");
-        ratingById.setSandPrating("New sandPrating");
-        ratingById.setFitchRating("New FitchRating");
+        ratingById.setMoodysRating("NewmoodysRating");
+        ratingById.setSandPrating("NewsandPrating");
+        ratingById.setFitchRating("NewFitchRating");
         ratingById.setOrderNumber(100);
         Boolean updateRating = ratingService.updateRating(ratingId, ratingById);
-        assertTrue(updateRating);
+        Assertions.assertTrue(updateRating);
     }
 
     @Test
     public void findAll() {
         List<Rating> ratingList = ratingService.findAll();
-        assertTrue(ratingList.size() > 0);
+        Assertions.assertTrue(ratingList.size() > 0);
     }
 
     @Test
     public void findById() {
         Integer ratingId = rating.getId();
         Rating ratingById = ratingService.findById(ratingId);
-        assertNotNull(ratingById);
+        Assertions.assertNotNull(ratingById);
     }
 
     @Test
@@ -67,6 +65,6 @@ public class RatingServiceTest {
         Integer ratingId = rating.getId();
         ratingService.deleteById(ratingId);
         Rating ratingById = ratingService.findById(ratingId);
-        assertNull(ratingById);
+        Assertions.assertNull(ratingById);
     }
 }

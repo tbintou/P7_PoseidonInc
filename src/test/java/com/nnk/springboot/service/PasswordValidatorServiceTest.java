@@ -1,26 +1,30 @@
 package com.nnk.springboot.service;
 
+
 import com.nnk.springboot.service.implementation.PasswordValidator;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
 public class PasswordValidatorServiceTest {
 
-    @Test
+
+    @ParameterizedTest(name = "#{index} - Run test with password = {0}")
+    @ValueSource(strings = {"Password$Test123456"})
     public void passwordRegex(String password) {
-        assertTrue(PasswordValidator.isValid(password));
+        Assertions.assertTrue(PasswordValidator.isValid(password));
     }
 
-    @Test
+    @ParameterizedTest(name = "#{index} - Run test with password = {0}")
+    @ValueSource(strings = {"PasswordTest1"})
     public void passwordRegexInvalid(String password) {
-        assertFalse(PasswordValidator.isValid(password));
+        Assertions.assertFalse(PasswordValidator.isValid(password));
     }
 
     @Test

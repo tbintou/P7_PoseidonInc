@@ -2,9 +2,11 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.repositories.CurvePointRepository;
-import org.junit.Test;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CurvePointServiceTest {
 
     private CurvePoint curvePoint = new CurvePoint();
@@ -47,7 +50,7 @@ public class CurvePointServiceTest {
         assertTrue(updateCurvePoint);
     }
 
-    @Test
+   @Test
     public void findAll() {
         List<CurvePoint> curvePointList = curvePointService.findAll();
         assertTrue(curvePointList.size() > 0);

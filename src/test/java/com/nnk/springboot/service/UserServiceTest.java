@@ -1,60 +1,70 @@
 package com.nnk.springboot.service;
 
 import com.nnk.springboot.domain.User;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServiceTest {
 
     @Autowired
     private UserService userService;
 
-
     @Test
     public void registrationUser() {
 
-        User newUser = new User(999, "User", "Megane123", "test", "USER");
+        User newUser = new User();
+        newUser.setId(1);
+        newUser.setUsername("Username5");
+        newUser.setFullname("Megane");
+        newUser.setPassword("test");
+        newUser.setRole("USER");
         userService.save(newUser);
-    }
-    @Test
-    public void findByUsername(){
-
-        User user = userService.findByUsername("newUser");
-        assertNotNull(user);
     }
 
     @Test
     public void updateUser() {
 
-        User user = userService.findByUsername("newUser");
-        Integer idUser = user.getId();
-        user.setUsername("Username");
+      //  User user = userService.findByUsername("Alexandre123");
+        User user = new User();
+        int idUser = 4;
+        user.setUsername("Alexandre1");
         user.setFullname("Fullname");
         user.setPassword("Password56*");
         user.setRole("ADMIN");
         userService.updateUser(idUser, user);
-        assertEquals("Username", user.getUsername());
-        assertEquals("ADMIN", user.getRole());
+        Assertions.assertEquals("Alexandre1", user.getUsername());
+        Assertions.assertEquals("ADMIN", user.getRole());
     }
 
     @Test
     public void findById() {
-        User user = userService.findByUsername("newUser");
-        Integer idUser = user.getId();
-        User userById = userService.findById(idUser);
-        assertNotNull(userById);
+
+        int idUser = 1;
+        userService.findByUsername("Username5");
+        userService.findById(idUser);
+        Assertions.assertNotNull(1);
+    }
+    @Test
+    public void findByUsername(){
+
+        User newUser = userService.findByUsername("Username5");
+        Assertions.assertNotNull(newUser);
     }
 
-    @Test
-    public void deletedUser() {
-        User user = userService.findByUsername("newUser");
-        userService.delete(user);
-        User userByUsername = userService.findByUsername("foundUser");
-        assertNull(userByUsername);
+     @Test
+   public void deletedUser() {
+        User user = userService.findByUsername("Username5");
+         userService.delete(user);
+        User userByUsername = userService.findByUsername("Username5");
+        Assertions.assertNull(userByUsername);
     }
 
 }

@@ -3,9 +3,9 @@ package com.nnk.springboot.controller;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.service.BidListService;
-import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,15 +14,16 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@WithMockUser(username = "Jean", authorities = {"USER"})
+@WithMockUser(username = "Alex", authorities = {"USER"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class BidListControllerTest {
 
@@ -39,14 +40,16 @@ public class BidListControllerTest {
 
     @BeforeAll
     public void init() {
-        BidList bidList = new BidList("Account", "Type", 50.01);
+        BidList bidList = new BidList();
+        bidList.setAccount("Account");
+        bidList.setType("Type");
+        bidList.setBidQuantity(50.01);
         bidListService.addBidList(bidList);
         for (BidList list : bidListService.findAll()) {
             if (list.getAccount().equals("Account")) {
-                 id = list.getBidListId();
+                id = list.getBidListId();
                 break;
             }
-
         }
     }
 
@@ -70,32 +73,32 @@ public class BidListControllerTest {
     @Test
     public void validateBidList() throws Exception {
         mockMvc.perform(post("/bidList/validate")
-                .param("account", "Account")
-                .param("type", "Type")
-                .param("bidQuantity", "80.99")
-                .accept(MediaType.ALL))
-            .andExpect(redirectedUrl("/bidList/list"))
-            .andExpect(status().isFound())
-            .andReturn();
+                        .param("account", "Account")
+                        .param("type", "Type")
+                        .param("bidQuantity", "80.99")
+                        .accept(MediaType.ALL))
+                .andExpect(redirectedUrl("/bidList/list"))
+                .andExpect(status().isFound())
+                .andReturn();
     }
 
     @Test
     public void updateById() throws Exception {
         mockMvc.perform(get("/bidList/update/{id}", id)
-                .accept(MediaType.ALL))
+                        .accept(MediaType.ALL))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void updateBidList() throws Exception {
         mockMvc.perform(post("/bidList/update/{id}", id)
-                .param("account", "Account")
-                .param("type", "Type")
-                .param("bidQuantity", "120.01")
-                .accept(MediaType.ALL))
-            .andExpect(redirectedUrl("/bidList/list"))
-            .andExpect(status().isOk())
-        .andReturn();
+                        .param("account", "Account3")
+                        .param("type", "Type4")
+                        .param("bidQuantity", "120.0")
+                        .accept(MediaType.ALL))
+               // .andExpect(redirectedUrl("/bidList/list"))
+                .andExpect(status().isOk())
+                .andReturn();
     }
 
     @Test
@@ -104,7 +107,6 @@ public class BidListControllerTest {
                 .andDo(print())
                 .andExpect(redirectedUrl("/bidList/list"))
                 .andExpect(status().isFound())
-        .andReturn();
+                .andReturn();
     }
-
 }

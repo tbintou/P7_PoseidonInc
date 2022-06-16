@@ -2,9 +2,7 @@ package com.nnk.springboot.service;
 
 import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.repositories.RuleNameRepository;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,6 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class RuleNameServiceTest {
 
     private RuleName ruleName = new RuleName();
@@ -43,27 +42,27 @@ public class RuleNameServiceTest {
     public void updateById() {
         Integer ruleNameId = ruleName.getId();
         RuleName ruleNameById = ruleNameService.findById(ruleNameId);
-        ruleNameById.setName("New name");
-        ruleNameById.setDescription("New description");
-        ruleNameById.setJson("New Json");
-        ruleNameById.setTemplate("New template");
-        ruleNameById.setSqlStr("New SqlStr");
-        ruleNameById.setSqlPart("New SqlPart");
+        ruleNameById.setName("Newname");
+        ruleNameById.setDescription("Newdescription");
+        ruleNameById.setJson("NewJson");
+        ruleNameById.setTemplate("Newtemplate");
+        ruleNameById.setSqlStr("NewSqlStr");
+        ruleNameById.setSqlPart("NewSqlPart");
         Boolean updateRuleName = ruleNameService.updateRuleName(ruleNameId, ruleNameById);
-        assertTrue(updateRuleName);
+        Assertions.assertTrue(updateRuleName);
     }
 
     @Test
     public void findAll() {
         List<RuleName> ruleNameList = ruleNameService.findAll();
-        assertTrue(ruleNameList.size() > 0);
+        Assertions.assertTrue(ruleNameList.size() > 0);
     }
 
     @Test
     public void findById() {
         Integer ruleNameId = ruleName.getId();
         RuleName ruleNameById = ruleNameService.findById(ruleNameId);
-        assertNotNull(ruleNameById);
+        Assertions.assertNotNull(ruleNameById);
     }
 
     @Test
@@ -71,6 +70,6 @@ public class RuleNameServiceTest {
         Integer ruleNameId = ruleName.getId();
         ruleNameService.deleteById(ruleNameId);
         RuleName ruleNameById = ruleNameService.findById(ruleNameId);
-        assertNull(ruleNameById);
+        Assertions.assertNull(ruleNameById);
     }
 }
