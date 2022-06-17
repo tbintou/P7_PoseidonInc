@@ -1,7 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.nnk.springboot.controller.BidListControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in com.nnk.springboot.controller.BidListControllerTest
-com.nnk.springboot.controller.BidListControllerTest  Time elapsed: 0.015 s  <<< ERROR!
-org.junit.platform.commons.JUnitException: @BeforeAll method 'public void com.nnk.springboot.controller.BidListControllerTest.init()' must be static unless the test class is annotated with @TestInstance(Lifecycle.PER_CLASS).
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.71 s - in com.nnk.springboot.controller.BidListControllerTest

@@ -37,25 +37,25 @@ public class RedirectServiceTest {
     }
 
     @Test
-   // @WithMockUser(username = "Jean1", authorities = {"ADMIN", "USER"})
+    @WithMockUser(username = "Adrian", authorities = {"USER"})
     public void formLoginAndPageRedirect() throws Exception {
         SecurityMockMvcRequestBuilders.FormLoginRequestBuilder login = formLogin()
-                .user("Hector123")
-                .password("tef#dPdze3");
+                .user("Adrian78")
+                .password("Password$Adrian9");
         mockMvc.perform(login)
-                .andExpect(authenticated().withUsername("Hector123"))
+                .andExpect(authenticated().withUsername("Adrian78"))
                 .andExpect(redirectedUrl("/bidList/list"));
     }
 
     @Test
-    @WithMockUser(username = "Michelle4", authorities = {"ADMIN"})
+    @WithMockUser(username = "Bintou", authorities = {"ADMIN"})
     public void formLoginRoleAdminAndPageRedirect() throws Exception {
         SecurityMockMvcRequestBuilders.FormLoginRequestBuilder login = formLogin()
-                .user("Michelle4")
-                .password("Pass$hhhQfg3");
+                .user("admin")
+                .password("Test1&Password");
 
         mockMvc.perform(login)
-                .andExpect(authenticated().withUsername("Michelle4"))
+                .andExpect(authenticated().withUsername("admin"))
                 .andExpect(redirectedUrl("/user/list"));
     }
 

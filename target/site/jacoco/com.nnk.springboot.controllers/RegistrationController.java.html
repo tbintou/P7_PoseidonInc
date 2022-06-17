@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RegistrationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.controllers</a> &gt; <span class="el_source">RegistrationController.java</span></div><h1>RegistrationController.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.controllers;
+
+import com.nnk.springboot.domain.User;
+import com.nnk.springboot.service.UserService;
+import com.nnk.springboot.service.implementation.PasswordValidator;
+import com.nnk.springboot.service.implementation.auth.UserDetailsAuthenticate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
+
+@Controller
+@RequestMapping(&quot;/registration&quot;)
+public class RegistrationController {
+
+    private UserService userService;
+
+    @Autowired
+    UserDetailsAuthenticate userDetailsAuthenticate;
+
+    @Autowired
+<span class="fc" id="L29">    public RegistrationController(UserService userService) {</span>
+<span class="fc" id="L30">        this.userService = userService;</span>
+<span class="fc" id="L31">    }</span>
+
+
+    @GetMapping
+    public String registrationView(Model model) {
+<span class="nc" id="L36">        model.addAttribute(new User());</span>
+<span class="nc" id="L37">        return &quot;registration&quot;;</span>
+    }
+
+    @PostMapping
+    public String registrationUser(@Valid @ModelAttribute(&quot;user&quot;) User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+
+<span class="nc" id="L43">        String registrationError = null;</span>
+<span class="nc" id="L44">        String patternError = null;</span>
+        // Validate username
+<span class="nc" id="L46">        User userExist = userService.findByUsername(user.getUsername());</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (userExist !=null) {</span>
+<span class="nc" id="L48">            registrationError = &quot;The username exists&quot;;</span>
+<span class="nc" id="L49">            model.addAttribute(&quot;registrationError&quot;, true);</span>
+        }
+        // Validate password
+<span class="nc" id="L52">        String passwordUser = user.getPassword();</span>
+<span class="nc" id="L53">        boolean validated = PasswordValidator.isValid(passwordUser);</span>
+<span class="nc bnc" id="L54" title="All 2 branches missed.">        if (!validated){</span>
+<span class="nc" id="L55">            patternError = &quot;Your password is invalid&quot;;</span>
+<span class="nc" id="L56">            model.addAttribute(&quot;patternError&quot;, true);</span>
+        }
+<span class="nc bnc" id="L58" title="All 6 branches missed.">        if (registrationError == null &amp;&amp; patternError == null &amp;&amp; (!bindingResult.hasErrors())){</span>
+<span class="nc" id="L59">            userService.save(user);</span>
+<span class="nc" id="L60">            redirectAttributes.addFlashAttribute(&quot;message&quot;, &quot;You've successfully signed up, please login&quot;);</span>
+<span class="nc" id="L61">            return &quot;redirect:/login&quot;;</span>
+        }
+
+<span class="nc" id="L64">        return &quot;registration&quot;;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

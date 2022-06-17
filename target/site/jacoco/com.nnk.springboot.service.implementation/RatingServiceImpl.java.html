@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RatingServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.service.implementation</a> &gt; <span class="el_source">RatingServiceImpl.java</span></div><h1>RatingServiceImpl.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.service.implementation;
+
+import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.repositories.RatingRepository;
+import com.nnk.springboot.service.RatingService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L14">@Slf4j</span>
+public class RatingServiceImpl implements RatingService {
+
+    private final RatingRepository ratingRepository;
+
+    @Autowired
+<span class="fc" id="L20">    public RatingServiceImpl(RatingRepository ratingRepository) {</span>
+<span class="fc" id="L21">        this.ratingRepository = ratingRepository;</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public void addRating(Rating rating) {
+<span class="fc" id="L26">        ratingRepository.save(rating);</span>
+<span class="fc" id="L27">        log.info(&quot;New rating &quot; + rating + &quot; is created !&quot;);</span>
+<span class="fc" id="L28">    }</span>
+
+    @Override
+    public Boolean updateRating(int id, Rating rating) {
+
+<span class="fc" id="L33">        Optional&lt;Rating&gt; ratingList = ratingRepository.findById(id);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (ratingList.isPresent()){</span>
+<span class="fc" id="L35">            Rating newRating = ratingList.get();</span>
+<span class="fc" id="L36">            newRating.setMoodysRating(rating.getMoodysRating());</span>
+<span class="fc" id="L37">            newRating.setSandPrating(rating.getSandPrating());</span>
+<span class="fc" id="L38">            newRating.setFitchRating(rating.getFitchRating());</span>
+<span class="fc" id="L39">            newRating.setOrderNumber(rating.getOrderNumber());</span>
+<span class="fc" id="L40">            ratingRepository.save(newRating);</span>
+<span class="fc" id="L41">            log.info(&quot;Rating with id &quot; + id + &quot; is updated as &quot; + newRating);</span>
+<span class="fc" id="L42">            return true;</span>
+        }
+<span class="nc" id="L44">        log.info(&quot;Failed to update rating with id &quot; + id + &quot; as&quot; + rating);</span>
+<span class="nc" id="L45">        return false;</span>
+    }
+
+    @Override
+    public List&lt;Rating&gt; findAll() {
+<span class="fc" id="L50">        return ratingRepository.findAll();</span>
+    }
+
+    @Override
+    public Rating findById(int id) {
+
+<span class="fc" id="L56">        Optional&lt;Rating&gt; ratingList = ratingRepository.findById(id);</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (ratingList.isPresent()){</span>
+<span class="fc" id="L58">            log.info(&quot;the id of rating is &quot; + id);</span>
+<span class="fc" id="L59">            return ratingList.get();</span>
+        } else {
+<span class="fc" id="L61">            log.info(&quot;Failed to find rating with id &quot; + id);</span>
+        }
+<span class="fc" id="L63">        return null;</span>
+    }
+
+    @Override
+    public void deleteById(int id) {
+
+<span class="fc" id="L69">        Optional&lt;Rating&gt; ratingList = ratingRepository.findById(id);</span>
+<span class="pc bpc" id="L70" title="1 of 2 branches missed.">        if (ratingList.isPresent()){</span>
+<span class="fc" id="L71">            ratingRepository.delete(ratingList.get());</span>
+<span class="fc" id="L72">            log.info(&quot;Rating with this id &quot; + id + &quot; has been deleted !&quot;);</span>
+        }
+<span class="fc" id="L74">        log.info(&quot;Failed to delete rating with id &quot; + id);</span>
+<span class="fc" id="L75">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

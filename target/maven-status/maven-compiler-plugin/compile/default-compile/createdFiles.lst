@@ -32,7 +32,6 @@ com\nnk\springboot\service\implementation\UserServiceImpl.class
 com\nnk\springboot\domain\Rating.class
 com\nnk\springboot\controllers\RuleNameController.class
 com\nnk\springboot\service\UserService.class
-com\nnk\springboot\domain\dto\UserRegistrationDTO.class
 com\nnk\springboot\controllers\BidListController.class
 com\nnk\springboot\repositories\CurvePointRepository.class
 com\nnk\springboot\repositories\RuleNameRepository.class

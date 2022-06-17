@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CurvePointServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">spring-boot-skeleton</a> &gt; <a href="index.source.html" class="el_package">com.nnk.springboot.service.implementation</a> &gt; <span class="el_source">CurvePointServiceImpl.java</span></div><h1>CurvePointServiceImpl.java</h1><pre class="source lang-java linenums">package com.nnk.springboot.service.implementation;
+
+import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.repositories.CurvePointRepository;
+import com.nnk.springboot.service.CurvePointService;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+<span class="fc" id="L14">@Slf4j</span>
+public class CurvePointServiceImpl implements CurvePointService {
+
+    private final CurvePointRepository curvePointRepository;
+
+    @Autowired
+<span class="fc" id="L20">    public CurvePointServiceImpl(CurvePointRepository curvePointRepository) {</span>
+<span class="fc" id="L21">        this.curvePointRepository = curvePointRepository;</span>
+<span class="fc" id="L22">    }</span>
+
+    @Override
+    public void addCurvePoint(CurvePoint curvePoint) {
+<span class="fc" id="L26">        curvePointRepository.save(curvePoint);</span>
+<span class="fc" id="L27">        log.info(&quot;New curve point &quot; + curvePoint + &quot; is created !&quot;);</span>
+<span class="fc" id="L28">    }</span>
+
+    @Override
+    public Boolean updateCurvePoint(int id, CurvePoint curvePoint) {
+
+<span class="fc" id="L33">        Optional&lt;CurvePoint&gt; curvePointList = curvePointRepository.findById(id);</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (curvePointList.isPresent()){</span>
+<span class="fc" id="L35">            CurvePoint newCurvePoint = curvePointList.get();</span>
+<span class="fc" id="L36">            newCurvePoint.setCurvePointId(curvePoint.getCurvePointId());</span>
+<span class="fc" id="L37">            newCurvePoint.setTerm(curvePoint.getTerm());</span>
+<span class="fc" id="L38">            newCurvePoint.setValue(curvePoint.getValue());</span>
+<span class="fc" id="L39">            curvePointRepository.save(newCurvePoint);</span>
+<span class="fc" id="L40">            log.info(&quot;Curve point with id &quot; + id + &quot; is updated as &quot; + newCurvePoint);</span>
+<span class="fc" id="L41">            return true;</span>
+        }
+<span class="nc" id="L43">        log.info(&quot;Failed to update curve point with id &quot; + id + &quot; as&quot; + curvePoint);</span>
+<span class="nc" id="L44">        return false;</span>
+    }
+
+    @Override
+    public List&lt;CurvePoint&gt; findAll() {
+<span class="fc" id="L49">        return curvePointRepository.findAll();</span>
+    }
+
+    @Override
+    public CurvePoint fidById(int id) {
+<span class="fc" id="L54">        Optional&lt;CurvePoint&gt; curvePointList = curvePointRepository.findById(id);</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (curvePointList.isPresent()){</span>
+<span class="fc" id="L56">            log.info(&quot;the id of curve point is &quot; + id);</span>
+<span class="fc" id="L57">            return curvePointList.get();</span>
+        } else {
+<span class="fc" id="L59">            log.info(&quot;Failed to find curve point with id &quot; + id);</span>
+        }
+<span class="fc" id="L61">        return null;</span>
+    }
+
+    @Override
+    public void deleteById(int id) {
+<span class="fc" id="L66">        Optional&lt;CurvePoint&gt; curvePointList = curvePointRepository.findById(id);</span>
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (curvePointList.isPresent()){</span>
+<span class="fc" id="L68">            curvePointRepository.delete(curvePointList.get());</span>
+<span class="fc" id="L69">            log.info(&quot;Curve point with this id &quot; + id + &quot; has been deleted !&quot;);</span>
+        }
+<span class="fc" id="L71">            log.info(&quot;Failed to delete curve point with id &quot; + id);</span>
+<span class="fc" id="L72">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

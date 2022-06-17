@@ -14,11 +14,11 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 
 @SpringBootTest
@@ -84,7 +84,7 @@ public class BidListControllerTest {
 
     @Test
     public void updateById() throws Exception {
-        mockMvc.perform(get("/bidList/update/{id}", id)
+        mockMvc.perform(post("/bidList/update/{id}", id)
                         .accept(MediaType.ALL))
                 .andExpect(status().isOk());
     }
@@ -92,12 +92,11 @@ public class BidListControllerTest {
     @Test
     public void updateBidList() throws Exception {
         mockMvc.perform(post("/bidList/update/{id}", id)
-                        .param("account", "Account3")
-                        .param("type", "Type4")
+                        .param("account", "AccountTest")
+                        .param("type", "TypeTest")
                         .param("bidQuantity", "120.0")
                         .accept(MediaType.ALL))
-               // .andExpect(redirectedUrl("/bidList/list"))
-                .andExpect(status().isOk())
+                .andExpect(redirectedUrl("/bidList/list"))
                 .andReturn();
     }
 

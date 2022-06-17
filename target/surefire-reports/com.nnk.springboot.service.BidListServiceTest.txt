@@ -1,17 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.nnk.springboot.service.BidListServiceTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.22 s <<< FAILURE! - in com.nnk.springboot.service.BidListServiceTest
-updatedById  Time elapsed: 0.073 s  <<< ERROR!
-org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction
-	at com.nnk.springboot.service.BidListServiceTest.updatedById(BidListServiceTest.java:48)
-Caused by: javax.persistence.RollbackException: Error while committing the transaction
-	at com.nnk.springboot.service.BidListServiceTest.updatedById(BidListServiceTest.java:48)
-Caused by: javax.validation.ConstraintViolationException: 
-Validation failed for classes [com.nnk.springboot.domain.BidList] during update time for groups [javax.validation.groups.Default, ]
-List of constraint violations:[
-	ConstraintViolationImpl{interpolatedMessage='Input has to be text', propertyPath=type, rootBeanClass=class com.nnk.springboot.domain.BidList, messageTemplate='Input has to be text'}
-	ConstraintViolationImpl{interpolatedMessage='Input has to be text', propertyPath=account, rootBeanClass=class com.nnk.springboot.domain.BidList, messageTemplate='Input has to be text'}
-]
-	at com.nnk.springboot.service.BidListServiceTest.updatedById(BidListServiceTest.java:48)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.112 s - in com.nnk.springboot.service.BidListServiceTest
