@@ -46,7 +46,7 @@ public class RatingController {
         if (!result.hasErrors()){
             ratingService.addRating(rating);
             model.addAttribute("ratingList", ratingService.findAll());
-            return "redirect:rating/list";
+            return "redirect:/rating/list";
         }
         return "rating/add";
     }

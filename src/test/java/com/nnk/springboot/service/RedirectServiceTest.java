@@ -37,13 +37,13 @@ public class RedirectServiceTest {
     }
 
     @Test
-    @WithMockUser(username = "Adrian", authorities = {"USER"})
+    @WithMockUser(username = "BOULANGER", authorities = {"USER"})
     public void formLoginAndPageRedirect() throws Exception {
         SecurityMockMvcRequestBuilders.FormLoginRequestBuilder login = formLogin()
-                .user("Adrian78")
-                .password("Password$Adrian9");
+                .user("jean")
+                .password("Jean&Boulanger123");
         mockMvc.perform(login)
-                .andExpect(authenticated().withUsername("Adrian78"))
+                .andExpect(authenticated().withUsername("jean"))
                 .andExpect(redirectedUrl("/bidList/list"));
     }
 

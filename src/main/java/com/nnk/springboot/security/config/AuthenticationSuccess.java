@@ -24,6 +24,9 @@ public class AuthenticationSuccess implements AuthenticationSuccessHandler {
             } else if (authority.getAuthority().equals("USER")) {
                 response.sendRedirect("/bidList/list");
                 break;
+            }else if (authority.getAuthority().equals("ROLE_USER")) {
+                response.sendRedirect("/bidList/list");
+                break;
             }
         }
     }
