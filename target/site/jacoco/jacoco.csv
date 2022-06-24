@@ -25,4 +25,4 @@ spring-boot-skeleton,com.nnk.springboot.domain,User,27,73,0,0,3,9,2,12,2,12
 spring-boot-skeleton,com.nnk.springboot.domain,CurvePoint,18,58,0,0,3,7,2,10,2,10
 spring-boot-skeleton,com.nnk.springboot.service.implementation.auth,UserDetailsAuthenticate,12,64,2,4,1,17,2,6,0,5
 spring-boot-skeleton,com.nnk.springboot.security.config,WebSecurityConfig,0,148,0,0,0,32,0,6,0,6
-spring-boot-skeleton,com.nnk.springboot.security.config,AuthenticationSuccess,1,35,2,4,1,10,2,3,0,2
+spring-boot-skeleton,com.nnk.springboot.security.config,AuthenticationSuccess,10,35,4,4,4,10,3,3,0,2
